@@ -36,14 +36,14 @@ const server = http.createServer(async (req, res) => {
 
   req.on("end", async () => {
     try {
-      const { message, image, file, generateImage, history } = JSON.parse(body || "{}");
+      const { message, image, file } = JSON.parse(body || "{}");
 
       if ((!message || !message.trim()) && !image && !file) {
         res.writeHead(400, { "Content-Type": "application/json" });
         return res.end(JSON.stringify({ error: "Mesaj veya fotoğraf gerekli." }));
       }
 
-      if (generateImage) { const imageResponse = await client.images.generate({ model: "gpt-image-2", prompt: message.trim(), size: "1024x1024" }); res.writeHead(200, { "Content-Type": "application/json" }); return res.end(JSON.stringify({ image: imageResponse.data[0].b64_json })); } const content = [];
+      const content = [];
 
       if (message && message.trim()) {
         content.push({
@@ -76,7 +76,12 @@ const server = http.createServer(async (req, res) => {
         model: "gpt-5.6-luna",
         instructions:
           "Sen YLM AI adlı yapay zeka asistanısın. Kullanıcı senin kim olduğunu sorarsa kendini YLM AI olarak tanıt. Asla ChatGPT olduğunu söyleme. Türkçe, doğal, samimi ve yardımcı ol.",
-        input: [ ...(Array.isArray(history) ? history.slice(-20) : []), { role: "user", content } ],
+        input: [
+          {
+            role: "user",
+            content,
+          },
+        ],
       });
 
       res.writeHead(200, { "Content-Type": "application/json" });

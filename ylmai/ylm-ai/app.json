@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "ylm-ai",
+    "slug": "snack-7455086e-2b21-44eb-a435-433e95344c8c",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSSpeechRecognitionUsageDescription": "YLM AI'nin sesinizi anlayabilmesi için konuşma tanıma izni gereklidir.",
+        "NSMicrophoneUsageDescription": "YLM AI'nin sesli mesajları anlayabilmesi için mikrofon izni gereklidir."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.ylmai.app",
+      "permissions": [
+        "RECORD_AUDIO",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "description": "Yapay zekâ asistanı",
+    "extra": {
+      "eas": {
+        "projectId": "9a61fff3-0a5f-4c28-8d1f-a484848c5398"
+      }
+    },
+    "plugins": [
+      "expo-font",
+      "expo-audio",
+      "expo-asset",
+      "expo-speech-recognition"
+    ]
+  }
+}
